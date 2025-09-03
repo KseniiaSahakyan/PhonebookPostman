@@ -588,14 +588,60 @@
 					"name": "Negative",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "Contact not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9cf33263-6ceb-460e-aae2-a7615af4bd13",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"API message equels: Contact not found in your contacts!\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"Contact not found in your contacts!\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "39fb577c-8eaa-4c17-b3ea-73d22d704db4",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "7e62412b-f9b8-468d-9dee-be10fee23e66",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"{{id}}\",\n  \"name\": \"Petr\",\n  \"lastName\": \"Ivanov\",\n  \"email\": \"string@gmail.com\",\n  \"phone\": \"6929693545\",\n  \"address\": \"Moscow\",\n  \"description\": \"goalkeeper\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
 							},
 							"response": []
 						}
