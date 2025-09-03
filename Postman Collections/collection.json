@@ -213,6 +213,19 @@
 								"url": "{{BaseURI}}/v1/user/registration/usernamepassword"
 							},
 							"response": []
+						},
+						{
+							"name": "Login or password is incorrect",
+							"id": "0f2a5650-8129-4757-a687-8c020d76355e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
+							},
+							"response": []
 						}
 					],
 					"id": "a60c0d4a-b62d-4de7-8479-6085a8246e03"
