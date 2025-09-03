@@ -89,7 +89,30 @@
 				},
 				{
 					"name": "Negative",
-					"item": [],
+					"item": [
+						{
+							"name": "UnauthorizedNewUser",
+							"id": "c3de9e56-e3a7-4c72-a6a5-f633412b0080",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
+						}
+					],
 					"id": "a60c0d4a-b62d-4de7-8479-6085a8246e03"
 				}
 			],
