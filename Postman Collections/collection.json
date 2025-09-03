@@ -101,7 +101,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "",
+									"raw": "\"id\": \"string\",\n      \"name\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"393563560898935\",\n      \"address\": \"string\",\n      \"description\": \"string\"",
 									"options": {
 										"raw": {
 											"language": "json"
