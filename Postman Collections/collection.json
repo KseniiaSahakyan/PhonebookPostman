@@ -216,6 +216,46 @@
 						},
 						{
 							"name": "Login or password is incorrect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "afd540f8-eba6-46ca-a9a8-3bec4f53f6af",
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 800ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(800);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string: OK\", function () {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"API message equals: Login or Password incorrect\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"Login or Password incorrect\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7b455b59-b6cb-48b0-863f-ea2e4a547c97",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "0f2a5650-8129-4757-a687-8c020d76355e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -223,6 +263,15 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"pochtaks@gmail.com\",\n  \"password\": \"Pochtaks4123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
 							},
 							"response": []
@@ -537,7 +586,20 @@
 				},
 				{
 					"name": "Negative",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "7e62412b-f9b8-468d-9dee-be10fee23e66",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "50b4c907-f20f-45c7-977e-eaf7b4224af6"
 				}
 			],
