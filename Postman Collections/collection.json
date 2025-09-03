@@ -92,16 +92,56 @@
 					"item": [
 						{
 							"name": "UnauthorizedNewUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "01468287-becb-4166-96bd-4884ad71a732",
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 800ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(800);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string: OK\", function () {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"API message equals: Login or Password incorrect\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"Login or Password incorrect\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c8471af3-2ad3-49f0-9052-405b28e9173b",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "c3de9e56-e3a7-4c72-a6a5-f633412b0080",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"string\",\n  \"password\": \"Cpb\\\"d4ZrjS_;Ou>2gO#9Y]@,`tGV//?D,ss&K M4?FB^S}(e2_XCf=nDC+~*JSqVZ7/XM->KlQ%5/ s,/Q\\\\C\"\n}",
+									"raw": "{\n  \"username\": \"pochtaksagmail.com\",\n  \"password\": \"Pochtaks$123\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -109,6 +149,50 @@
 									}
 								},
 								"url": "{{BaseURI}}/v1/user/registration/usernamepassword"
+							},
+							"response": []
+						},
+						{
+							"name": "Login registered user Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "33604653-8a62-4e55-bc17-e2531b4d117c",
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"token\", jsonData.token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "463d4e0f-d7c8-4e98-a0dc-569e692dc26e",
+										"exec": [],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "f1c9b974-3d9e-445b-98ed-731c394c6a8b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"pochtaks@gmail.com\",\n  \"password\": \"Pochtaks$123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
 							},
 							"response": []
 						}
