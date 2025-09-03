@@ -644,6 +644,28 @@
 								"url": "{{BaseURI}}/v1/contacts"
 							},
 							"response": []
+						},
+						{
+							"name": "Duplicate contact fields",
+							"id": "4dff83f7-31f6-4527-b595-2827d434da44",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Viktor\",\n  \"lastName\": \"Ivanov\",\n  \"email\": \"string@gmail.com\",\n  \"phone\": \"6929693545\",\n  \"address\": \"Moscow\",\n  \"description\": \"goalkeeper\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURI}}/v1/contacts"
+							},
+							"response": []
 						}
 					],
 					"id": "50b4c907-f20f-45c7-977e-eaf7b4224af6"
