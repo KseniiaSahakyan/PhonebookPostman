@@ -153,15 +153,33 @@
 							"response": []
 						},
 						{
-							"name": "Login registered user Copy",
+							"name": "DuplicateUserRegistration",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "33604653-8a62-4e55-bc17-e2531b4d117c",
+										"id": "db38b85d-d145-4173-9552-8997670ff409",
 										"exec": [
-											"var jsonData = pm.response.json();",
-											"pm.environment.set(\"token\", jsonData.token);"
+											"pm.test(\"Status code is 409\", function () {",
+											"    pm.response.to.have.status(409);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 800ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(800);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string: OK\", function () {",
+											"    pm.response.to.have.status(\"Unauthorized\");",
+											"});",
+											"",
+											"pm.test(\"API message equals: User already exists\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"User already exists\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});"
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -170,13 +188,13 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "463d4e0f-d7c8-4e98-a0dc-569e692dc26e",
+										"id": "a548b678-c22e-4349-9219-21177656841b",
 										"exec": [],
 										"type": "text/javascript"
 									}
 								}
 							],
-							"id": "f1c9b974-3d9e-445b-98ed-731c394c6a8b",
+							"id": "1f5a6745-d671-4918-9099-597c0b48fc52",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -192,7 +210,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURI}}/v1/user/login/usernamepassword"
+								"url": "{{BaseURI}}/v1/user/registration/usernamepassword"
 							},
 							"response": []
 						}
