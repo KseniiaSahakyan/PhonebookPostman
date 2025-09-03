@@ -101,14 +101,14 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "\"id\": \"string\",\n      \"name\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"393563560898935\",\n      \"address\": \"string\",\n      \"description\": \"string\"",
+									"raw": "{\n  \"username\": \"string\",\n  \"password\": \"Cpb\\\"d4ZrjS_;Ou>2gO#9Y]@,`tGV//?D,ss&K M4?FB^S}(e2_XCf=nDC+~*JSqVZ7/XM->KlQ%5/ s,/Q\\\\C\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "{{BaseURI}}/v1/contacts"
+								"url": "{{BaseURI}}/v1/user/registration/usernamepassword"
 							},
 							"response": []
 						}
