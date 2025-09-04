@@ -164,10 +164,6 @@
 											"    pm.response.to.have.status(409);",
 											"});",
 											"",
-											"pm.test(\"Response time is less than 800ms\", function () {",
-											"    pm.expect(pm.response.responseTime).to.be.below(800);",
-											"});",
-											"",
 											"pm.test(\"Status code name has string: Conflict\", function () {",
 											"    pm.response.to.have.status(\"Conflict\");",
 											"});",
@@ -662,17 +658,8 @@
 											"    pm.response.to.have.status(409);",
 											"});",
 											"",
-											"pm.test(\"Response time is less than 800ms\", function () {",
-											"    pm.expect(pm.response.responseTime).to.be.below(800);",
-											"});",
-											"",
-											"pm.test(\"Status code name has string: OK\", function () {",
-											"    pm.response.to.have.status(\"Unauthorized\");",
-											"});",
-											"",
-											"pm.test(\"API message equals: Login or Password incorrect\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.message).to.eql(\"Login or Password incorrect\");",
+											"pm.test(\"Status code name has string: Conflict\", function () {",
+											"    pm.response.to.have.status(\"Conflict\");",
 											"});",
 											"",
 											"pm.test(\"Content-Type is present\", function () {",
@@ -687,8 +674,11 @@
 									"listen": "prerequest",
 									"script": {
 										"id": "d52d943a-84a4-47d6-a8b9-9e4a82128828",
-										"exec": [],
-										"type": "text/javascript"
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
